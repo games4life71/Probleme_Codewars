@@ -1,0 +1,190 @@
+
+        public static string Mix(string str1, string str2)
+        {
+
+            string valori = "";
+            string litere = "qwertyuiopasdfghjklzxcvbnm";
+            char[] litereAlfabet = litere.ToCharArray();
+            Array.Sort(litereAlfabet);//sortare in ordine alfabetica 
+            SortedDictionary<char, int> tabelAparitii1 = new SortedDictionary<char, int>(); //tabel br aparitii fiecare literea 1 
+            SortedDictionary<char, int> tabelAparitii2 = new SortedDictionary<char, int>(); //tabel br aparitii fiecare literea 1 
+            foreach (char elem in litereAlfabet) { tabelAparitii1[elem] = 0; tabelAparitii2[elem] = 0; } //creare tabel si inserare prima coloana 
+            foreach (char elem in str1) if (litereAlfabet.Contains(elem)) { tabelAparitii1[elem]++; } //incrementare tabel 1 
+            foreach (char elem in str2) if (litereAlfabet.Contains(elem)) { tabelAparitii2[elem]++; }//incrementare tabel 2
+
+
+            //foreach (KeyValuePair<char, int> kv in tabelAparitii1) Console.WriteLine(kv.Key + " " +kv.Value);
+            //Console.WriteLine();    
+            //foreach (KeyValuePair<char, int> kv in tabelAparitii2) Console.WriteLine(kv.Key + " " +kv.Value);
+
+            SortedDictionary<char, int> sortareApariti = new SortedDictionary<char, int>();
+            foreach (KeyValuePair<char, int> kv in tabelAparitii1) Console.WriteLine(kv.Key + " " + kv.Value);
+            Console.WriteLine();
+            foreach (KeyValuePair<char, int> kv in tabelAparitii2) Console.WriteLine(kv.Key + " " + kv.Value);
+            char str = 'a';
+            foreach (char litera in litereAlfabet)
+            {
+
+                //construire raspuns final cu str: 
+                if (tabelAparitii1[litera] != 0 && tabelAparitii1[litera] != 1 || tabelAparitii2[litera] != 0 && tabelAparitii2[litera] != 1)
+                {
+
+                    //se compara valorile 
+
+
+                    if (tabelAparitii1[litera] > tabelAparitii2[litera])
+                    {
+
+
+
+                        if (tabelAparitii1[litera] != 0)
+                        {
+                            sortareApariti.Add(litera, tabelAparitii1[litera]); //ultima cifra din coada este prop din care face parte 
+                            if (litera == 'u') valori += "esteU" + ':';                                              //1-PROP 1 ,2-PROP 2 ,3-=;
+                            str = '1';
+                            valori += str.ToString() + ':';
+
+
+                        }
+                    }
+
+                    else if (tabelAparitii2[litera] > tabelAparitii1[litera])
+                    {
+
+                        if (tabelAparitii2[litera] != 0)
+                        {
+                            //ultima cifra din coada este prop din care face parte 
+
+
+
+                            str = '2';
+                            valori += str.ToString() + ':';
+                            sortareApariti.Add(litera, tabelAparitii2[litera]);
+                        }
+
+                    }
+
+                    else if (tabelAparitii1[litera] == tabelAparitii2[litera])
+                    {
+                        if (tabelAparitii1[litera] != 0)
+                        {
+                            sortareApariti.Add(litera, tabelAparitii1[litera]); //ultima cifra din coada este prop din care face parte 
+
+                            str = '=';
+                            valori += str.ToString() + ':';
+                        }
+                    }
+
+                }
+
+            }
+
+            sortareApariti.Reverse();
+            foreach (KeyValuePair<char, int> kv in sortareApariti) Console.WriteLine(kv.Key + "/ " + kv.Value);  //afisare  prima transformare a tabelului
+
+            var sortare = sortareApariti.Where(n => n.Value > 1).OrderByDescending(x => x.Value).ThenBy(x => x.Key);
+            Console.WriteLine();
+
+
+            List<KeyValuePair<char, int>> listaValori = new List<KeyValuePair<char, int>>();
+            foreach (KeyValuePair<char, int> kv in sortare) { listaValori.Add(kv); }
+
+
+
+            foreach (KeyValuePair<char, int> kv in listaValori) { Console.WriteLine(kv.Key + " " + kv.Value); }
+
+            //construire string 
+
+            int i = 2;
+            foreach (KeyValuePair<char, int> kv in listaValori)
+            {
+                if (kv.Value != 0 && kv.Value != 1)
+                {
+                    string mesaj = "";
+
+
+
+                    for (int j = 0; j < kv.Value; j++)
+                    {
+                        mesaj += kv.Key.ToString();
+                    }
+                    mesaj += "/";
+                    valori = valori.Insert(i, mesaj);
+                    i += 3 + kv.Value;
+                }
+            }
+
+            int l = valori.Length;
+            valori = valori.Remove(l - 1);
+
+            //mutare fiecare "grup de elemente "intr o lista 
+
+            List<string> lista_finala = new List<string>();
+
+
+            string[] split = valori.Split('/');
+
+
+            foreach (string elem in split) lista_finala.Add(elem);
+            var specialOrder = "12=";
+            var ordered = lista_finala.OrderByDescending(s => s.Length).ThenBy(s => specialOrder.IndexOf(s[0])).ThenBy(s => s);
+
+            valori = string.Join("/", ordered);
+
+
+
+
+            return valori;
+
+        }
+        public static string StringsMix(string s1, string s2)
+        {
+            StringBuilder sb = new StringBuilder();
+            // Convert string to char arrays order by ascending
+            char[] s1Chars = s1.Where(x => char.IsLower(x)).OrderBy(x => x).ToArray();
+            char[] s2Chars = s2.Where(x => char.IsLower(x)).OrderBy(x => x).ToArray();
+
+            // Insert arrays to find characters that appear in both 
+            char[] inter = s1Chars.Intersect(s2Chars).ToArray();
+
+            for (int i = 0; i < inter.Length; i++)
+            {
+                // For each character, put all occurences in their respective array
+                // Get count
+                char[] s1Ch = s1.Where(x => x.Equals(inter[i])).ToArray();
+                char[] s2Ch = s2.Where(x => x.Equals(inter[i])).ToArray();
+                int s1Count = s1Ch.Length;
+                int s2Count = s2Ch.Length;
+
+                if (s1Count > s2Count)
+                {
+                    string chars = new String(s1Ch);
+                    sb.Append("1:" + chars + "/");
+                }
+                else if (s2Count > s1Count)
+                {
+                    string chars = new String(s2Ch);
+                    sb.Append("2:" + chars + "/");
+                }
+                else if (s1Count == s2Count)
+                {
+                    string chars = new String(s1Ch);
+                    sb.Append("=:" + chars + "/");
+                }
+            }
+
+            string final = String.Empty;
+            string[] strings = sb.ToString().Split('/');
+            // "Lexicographical ordering"
+
+            var specialOrder = "12=";
+            var ordered = strings.OrderByDescending(s => s.Length).ThenBy(s => specialOrder.IndexOf(s[0])).ThenBy(s => s);
+
+
+
+
+            final = String.Join("/", strings);
+            strings = final.Split('/').Where(x => x.Length > 3).Select(x => x).ToArray(); // Remove trailing single characters
+            final = String.Join("/", strings);
+            return final;
+        }
