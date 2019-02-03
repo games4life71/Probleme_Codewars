@@ -1,0 +1,30 @@
+
+        public static List<string> Anagrams(string str1, List<string> words)
+        {
+            List<string> anagrame = new List<string>();
+            char[] sortare1 = str1.ToCharArray();
+            Array.Sort(sortare1);
+            string copie1 = new string(sortare1);
+
+            foreach (string str2 in words)
+            {
+                char[] sortare2 = str2.ToCharArray();
+                Array.Sort(sortare2);
+                string copie2 = new string(sortare2);
+                bool OK = false;
+               if (copie1.Length != copie2.Length) { OK = false; }
+                else if (copie1.Length == copie2.Length)
+                {
+                    //se compara fiecare litera in parte 
+                    for (int i = 0; i < copie1.Length; i++)
+                    {
+                        if (copie1[i] == copie2[i]) { OK = true; }
+                        else { OK = false; break; }
+                  }
+                }
+                if (OK == true) anagrame.Add(str2);
+            }
+            foreach (string element in anagrame) Console.WriteLine(element);
+
+            return anagrame;
+        }
