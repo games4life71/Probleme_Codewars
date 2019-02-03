@@ -1,0 +1,46 @@
+ public static bool Scramble(string str1, string str2)
+        {
+
+            Dictionary<char, int> tabelAparitii1 = new Dictionary<char, int>();
+            Dictionary<char, int> tabelAparitii2 = new Dictionary<char, int>();
+
+            string litereAlfabet = "qwertyuiopasdfghjklzxcvbnm";
+            char[] litereSortarte = litereAlfabet.ToCharArray();
+            Array.Sort(litereSortarte);
+            //  foreach (char elem in litereSortarte) Console.Write( elem+ " " );
+
+            //populam tabelul cu key-ul litera 
+
+            foreach (char litera in litereSortarte)
+            {
+                tabelAparitii1.Add(litera, 0);
+                tabelAparitii2.Add(litera, 0);
+
+            }
+            //  foreach (KeyValuePair<char,int> kv in tabelAparitii1 ) { Console.WriteLine(kv.Key + ": "+kv.Value); }
+            //1 -> verificam nr de aparitii al fiecarei cifre in fiecare cuvant 
+
+            foreach (char litera in str1) //primul cuvant 
+            {
+
+                tabelAparitii1[litera] += 1;
+
+            }
+            foreach (char litera in str2) //primul cuvant 
+            {
+
+                tabelAparitii2[litera] += 1;
+
+            }
+            bool ok = true;
+
+            //verificam daca se poate forma un cuvant din str1 - comparam nr de aparitii ale fiecarei litere 
+            foreach (char litera in litereSortarte)
+            {
+               if (tabelAparitii1[litera] >= tabelAparitii2[litera]) ok = true;
+                else { ok = false; break; }
+            }
+
+            return ok;
+
+        }
