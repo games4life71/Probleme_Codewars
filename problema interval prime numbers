@@ -1,0 +1,32 @@
+
+        int a = 999, b = 2500;
+
+        List<int> numere = new List<int>();
+
+        for (int i = a; i<b; i++) //verificam fiecare numar din interval 
+        {
+
+            int contorCifre, contorCifrePrime = 0;
+        int copie = i;
+        string numar = copie.ToString();
+        contorCifre = numar.Length;
+            foreach(char cifra in numar)
+            {
+
+                if(cifra=='2'|| cifra == '3' || cifra == '5' || cifra == '7')
+                {
+
+                    contorCifrePrime += 1;
+
+                }
+
+
+}
+
+            if (contorCifre == contorCifrePrime) numere.Add(i); 
+
+        }
+
+
+
+        foreach (int elementNumar in numere) Console.Write(elementNumar + " ");
