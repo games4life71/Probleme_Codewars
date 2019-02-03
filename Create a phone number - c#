@@ -1,0 +1,15 @@
+Codul sursa al problemelor 
+        public static string CreatePhoneNumber (int[] number)
+        {
+            string nr = "() -";
+         string nr1=nr.Insert(1, number[0].ToString() + number[1].ToString()+number[2].ToString());
+            string nr2 = nr1.Insert(6, number[3].ToString() + number[4].ToString() + number[5].ToString());
+            string nr3 = nr2.Insert(10, number[6].ToString()+number[7].ToString()+number[8].ToString()+number[9].ToString());
+
+
+
+
+            return nr3;
+        }
+
+  
