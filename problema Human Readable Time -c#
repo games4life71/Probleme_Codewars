@@ -1,0 +1,18 @@
+    
+    public static string GetReadableTime(int numar)
+        {
+            int ore = 0, minute = 0;
+            string OraFinala = "", copieOre = "", copieMinute = "", copieSecunde = "";
+
+            ore = numar / 3600;
+            numar -= ore * 3600;
+            minute = numar / 60;
+            numar -= minute * 60;
+
+            copieOre = ore.ToString(); if (ore <= 9) copieOre = copieOre.PadLeft(2, '0');
+            copieMinute = minute.ToString(); if (minute <= 9) copieMinute = copieMinute.PadLeft(2, '0');
+            copieSecunde = numar.ToString(); if (numar <= 9) copieSecunde = copieSecunde.PadLeft(2, '0');
+            OraFinala = copieOre + ":" + copieMinute + ":" + copieSecunde;
+
+            return OraFinala;
+        }
