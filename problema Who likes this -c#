@@ -1,0 +1,23 @@
+ 
+ 
+ public static string Likes(string[] nume)
+        {
+
+            string mesaj = "";
+            int lungime = nume.Length;
+
+            int caz;
+            if (lungime < 4) caz = lungime;
+            else caz = 5;
+            switch (caz)
+
+            {
+
+                case 1: mesaj = nume[0] + " " + "likes this"; break;
+                case 3: mesaj = nume[0] + "," + nume[1] + " " + " and " + " " + nume[2] + " " + "like this "; break;
+                case 2: mesaj = nume[0] + " " + "and " + " " + nume[1] + " " + "like this "; break;
+                case 4: mesaj = nume[0] + "," + nume[1] + " " + "and " + " " + (lungime - 2) + " " + "like this "; break;
+                default: mesaj = "no one likes this "; break;
+            }
+            return mesaj;
+        }
