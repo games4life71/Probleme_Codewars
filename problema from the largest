@@ -1,0 +1,19 @@
+   public static int MaxNumber(int n)
+        {
+            int u = 0, numarfinal = 0;
+            List<int> numere = new List<int>();
+
+            while (n != 0) { u = n % 10; n /= 10; numere.Add(u); }
+
+            numere.Sort();
+            numere.Reverse();
+            foreach (int elem in numere) numarfinal = numarfinal * 10 + elem;
+            //int numarF = 0;
+
+            //while (numarfinal != 0) { numarF = numarF * 10 + numarfinal % 10; numarfinal /= 10; }
+
+
+
+            return numarfinal;
+
+        }
