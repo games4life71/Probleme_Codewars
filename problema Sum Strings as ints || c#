@@ -1,0 +1,84 @@
+
+        public static string sumStrings(string str1, string str2)
+        {
+
+            //convertim str1 si str2 in INT 
+            //adunam  de la cifra unitarilor 
+            //vedem daca rez este >9 si 
+            long nr1, nr2;
+            string sumaFinala = "";
+            //conversie 
+            //1) daca str.length <7 
+            List<long> cifreNumere = new List<long>();
+            //daca marimile numerelor nu sunt egale le facem egale 
+            if (str1.Length > str2.Length)
+            {
+                str2 = str2.PadLeft(str1.Length, '0');
+
+            }
+            else if (str1.Length < str2.Length) { str1 = str1.PadLeft(str2.Length, '0'); }
+            List<int> cifre1 = new List<int>();
+            List<int> cifre2 = new List<int>();
+
+            foreach (char car in str1)   //adaugam cifrele in lista
+            {
+
+
+                int conv = (int)Char.GetNumericValue(car);
+
+                cifre1.Add(Convert.ToInt32(conv));
+            }
+            foreach (char car in str2)
+            {
+
+                int conv = (int)Char.GetNumericValue(car);
+
+                cifre2.Add(Convert.ToInt32(conv));
+
+            }
+            cifre1.Reverse();
+            cifre2.Reverse();
+
+            long rest = 0;
+            for (int i = 0; i < cifre1.Count; i++)
+            {
+                long cifra1, cifra2, sumaCifre;
+                //daca se ajunge la ultima cifre  
+                if (i == cifre2.Count - 1)
+                {
+
+                    cifra1 = cifre1[i];
+                    cifra2 = cifre2[i];
+
+                    sumaCifre = cifra1 + cifra2 + rest;
+                    Console.WriteLine(sumaCifre);
+                    if (sumaCifre == 0) break;
+                    else { cifreNumere.Add(sumaCifre); }
+                    break;
+                }
+
+                cifra1 = cifre1[i];
+                cifra2 = cifre2[i];
+
+                //se fac toate adunarile
+                //se verifica daca este "rest"
+
+                sumaCifre = cifra1 + cifra2 + rest;
+
+                if (sumaCifre > 9)
+                {
+
+                    cifreNumere.Add(sumaCifre % 10);
+
+                    rest = 1;
+                }
+                else { cifreNumere.Add(sumaCifre); rest = 0; }
+
+           }
+
+          cifreNumere.Reverse();
+            foreach (long elem in cifreNumere) { sumaFinala += elem.ToString(); }
+
+       return sumaFinala;
+
+        }
