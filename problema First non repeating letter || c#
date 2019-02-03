@@ -1,0 +1,46 @@
+
+public static string FirstNonRepeatingLetter(string s) // "stre!!@SDss" 
+        {
+
+            string sir = s.ToLower();
+
+            string litere = "qwertyuioplkjhgfdsazxcvbnm";
+
+            //se sar caracterele care nu sunt litere 
+
+
+            SortedDictionary<char, int[]> tblContor = new SortedDictionary<char, int[]>(); //lista formata din char si array cu pozitie si nr de aparitii
+            SortedDictionary<char, int> tblApar = new SortedDictionary<char, int>(); //prima e  poz si a 2 a nrApar
+
+            foreach (char k in litere) tblApar.Add(k, 0); //se initializeaza cu 0 
+            foreach (char c in sir) if (litere.Contains(c)) { tblApar[c]++; }
+
+            //foreach (KeyValuePair<char, int> kr in tblApar) { Console.WriteLine(kr.Key + " " + kr.Value); }
+            foreach (char l in litere) tblContor.Add(l, new int[] { 0, 0 });//se initializeaza cu poz si  val 0 
+
+            for (int i = 0; i < sir.Length; i++)
+            {
+
+                if (litere.Contains(sir[i]))
+                { tblContor[sir[i]] = new int[] { i, tblApar[sir[i]] }; } //incrementare cu nr de apar si poz in TblCont
+
+            }
+            SortedDictionary<char, int> tbl = new SortedDictionary<char, int>();
+
+            int min = 9999999;
+            foreach (KeyValuePair<char, int[]> kv in tblContor) {
+
+                if (kv.Value[0] < min && kv.Value[1] == 1) tbl.Add(kv.Key, kv.Value[0]);
+
+            }
+            var ord = tbl.OrderBy(x => x.Value);
+            Console.WriteLine("sortare efectutata");
+            foreach (KeyValuePair<char, int> kv in ord) Console.WriteLine(kv.Key + " " + kv.Value);
+            string rez = "";
+            if (tbl.Count != 0) { string rez1 = s[ord.ElementAt(0).Value].ToString(); rez = rez1; }
+            if (tbl.Count == 0) return "";
+            else if (s.Length == 0) return "";
+            else return rez;
+
+
+        }
