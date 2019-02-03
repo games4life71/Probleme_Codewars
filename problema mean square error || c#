@@ -1,0 +1,30 @@
+
+  public static double Solution(int[] nr1, int[] nr2)
+        {
+            double rez = 0;
+            double suma = 0, count = 0;
+
+            for (var i = 0; i < nr1.Length; i++)
+            {
+                int diff = 0;
+
+
+                if (nr1[i] > nr2[i])
+                {
+                    diff = nr1[i] - nr2[i];
+                    suma += diff * diff;
+                    count++;
+                }
+
+                else
+                {
+
+                    diff = nr2[i] - nr1[i];
+                    suma += diff * diff;
+                    count++;
+                }
+            }
+
+            return rez = suma / count;
+
+        }
