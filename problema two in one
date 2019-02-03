@@ -1,0 +1,15 @@
+
+public static string longest(string a, string b)
+        {
+            string c = "", unite = " ";
+            SortedSet<char> litere = new SortedSet<char>();
+            unite = a + b;
+            for (int i = 0; i < unite.Length; i++)
+            {
+
+                litere.Add(unite[i]);
+            }
+
+            foreach (char car in litere) c += car;
+           return c;
+        }
