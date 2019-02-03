@@ -1,0 +1,33 @@
+
+  public int DigitalRoot(long n)
+            {
+
+
+
+
+                long suma = 0, suma2 = 0;
+                do
+                {
+                    suma += n % 10;
+                    n = n / 10;
+
+
+
+
+                }
+
+                while (n != 0);
+                do
+                {
+                    suma2 += suma % 10;
+                    suma /= 10;
+
+                }
+                while (suma != 0);
+
+                int suma_finala = Convert.ToInt32(suma2);
+                return suma_finala;
+
+
+
+            }
