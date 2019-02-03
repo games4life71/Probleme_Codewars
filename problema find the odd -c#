@@ -1,0 +1,13 @@
+    public static int fiind_it  (int[] seq)
+
+        { 
+  SortedDictionary<int, int> tbl = new SortedDictionary<int, int>();
+
+            foreach (int nr in seq) if (tbl.ContainsKey(nr)) tbl[nr]++; else { tbl.Add(nr, 1); }
+
+                    //foreach (KeyValuePair<int, int> kv in tbl) { Console.WriteLine(kv.Key + " " + kv.Val);  }     
+
+                    foreach (KeyValuePair<int, int> kv in tbl) { if (kv.Value % 2 != 0) return kv.Key; }
+            
+            return -1;
+        }
