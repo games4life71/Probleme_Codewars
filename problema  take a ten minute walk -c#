@@ -1,0 +1,36 @@
+ 
+ public static bool IsValidWalk(string[] walk)
+        {
+
+            int x = 0, y = 0; //vectori de pozitie 
+            if (walk.Length > 10) return false; //fals - plimbarea este mai lunga de 10 min.
+            else if (walk.Length % 2 != 0) return false;//fals 
+
+            else
+            {
+                foreach (string pas in walk)
+                {
+                    switch (pas)
+                    {
+                        case "n": y++; break;
+                        case "s": y--; break;
+                        case "w": x--; break;
+                        case "e": x++; break;
+
+                        default: break;
+
+                    }
+
+
+
+                }
+
+                if (x == 0 && y == 0 && walk.Length == 10) return true;//true
+                else return false;
+
+            }
+
+
+
+
+        }
