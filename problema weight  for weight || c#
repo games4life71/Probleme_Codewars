@@ -1,0 +1,27 @@
+
+      public static string orderWeight(string str)
+        {
+
+            string[] numere = str.Split(' ');// "despicam textul in numere  "
+            List<KeyValuePair<string, int>> tblSuma = new List<KeyValuePair<string, int>>();
+            foreach (string numar in numere)
+            {
+
+                int sumaCfr = 0, cifra;
+
+                foreach (char c in numar) { sumaCfr += (int)char.GetNumericValue(c); }//se face suma cifrelor 
+                var element = new KeyValuePair<string, int>(numar, sumaCfr);
+
+                tblSuma.Add(element);
+                Console.WriteLine();
+            }
+            var sortare = tblSuma.OrderBy(x => x.Value).ThenBy(x => x.Key);
+            StringBuilder rez = new StringBuilder();
+            foreach (KeyValuePair<string, int> kv in sortare) rez.Append(kv.Key).Append("");
+            string rezFinal = rez.ToString().TrimEnd(' ');
+
+
+            return rezFinal;
+
+
+        }
