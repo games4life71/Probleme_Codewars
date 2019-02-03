@@ -1,0 +1,37 @@
+  public static List<string> mexican = new List<string>();
+        public List<string> wave(string str)
+        {
+
+            string cuvantNou = "";
+            int indexLitera = 0;
+            char[] litere = new char[str.Length];
+
+            for (int i = 0; i < litere.Length; i++)
+            {
+
+                litere[i] = str[i];
+
+
+
+            }
+
+            int indexCifa = 0;
+            foreach (char elem in litere)
+            {
+
+                litere[indexCifa] = Char.ToUpper(elem);
+                cuvantNou = new string(litere);
+
+
+
+                mexican.Add(cuvantNou);
+
+                litere[indexCifa] = Char.ToLower(elem);
+                indexCifa++;
+            }
+
+
+
+            return mexican;
+            mexican.Clear();
+        }
