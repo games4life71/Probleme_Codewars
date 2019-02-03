@@ -1,0 +1,133 @@
+public static string WhatIsTheTime(string timeInMirror)
+        {
+
+
+
+            //se citeste ora si minutul si se convertesc in int 
+            int indx = 0;
+            int ora1 = 0;
+            int min1 = 0;
+            char[] car = timeInMirror.ToCharArray();
+            int ora = 0, minute = 0, i = 0, j = 3;
+            while (1 == 1)
+            {
+
+
+                ora = ora * 10 + car[i] - '0';
+                minute = minute * 10 + car[j] - '0';
+                i++;
+                j++;
+
+                if (i == 2) break;
+            }
+            int[] mins = new int[60];
+            int[] hours = new int[12];
+            for (int k = 0; k < 12; k++)
+            {
+                hours[k] = k;
+
+            }
+            for (int h = 0; h < 60; h++)
+            {
+
+                mins[h] = h;
+
+            }
+            mins[0] = 0;
+            hours[0] = 12;
+
+            int oraFin = 0;
+            //oglindire ora 
+            if (ora == 6 || ora == 3 || ora == 12 || ora == 9) ora1 = ora;
+
+            else
+
+            {
+                //identificare cadran 
+                if ((ora <= 8 && ora >= 7)) //indx se scade  cadr III
+                {
+
+                    indx = ora - 6;
+                    ora1 = hours[ora] - indx * 2;
+                }
+
+                if (ora >= 1 && ora <= 2) //indexul se scade  cadr I
+                {
+
+                    indx = ora;
+
+                    ora1 = hours[ora] + indx * 4; //ora1 este negativ 
+
+                }
+
+                if (ora >= 10 && ora <= 11) //indx se aduna  cadr IV
+                {
+
+                    indx = 12 - ora;
+                    ora1 = hours[ora] - 12 + 2 * indx;
+
+
+                }
+
+                if (ora >= 4 && ora <= 5)//indx se aduna cadr II
+                {
+
+                    indx = 6 - ora;
+
+                    ora1 = hours[ora] + 2 * indx;
+                }
+            }
+
+            //oglindire minute 
+
+            if (minute == 30 || minute == 45 || minute == 15 || minute == 00) min1 = minute;
+
+
+            else
+            {
+                if (minute >= 1 && minute <= 14) //cadr I
+                {
+
+                    indx = minute;
+                    min1 = 60 + minute - 2 * indx;
+                }
+
+                if (minute >= 16 && minute <= 29) //cadr II
+                {
+
+                    indx = 30 - minute;
+                    min1 = mins[minute] + 2 * indx;
+
+                }
+
+                if (minute >= 31 && minute <= 44) //cadr III
+                {
+
+                    indx = minute - 30;
+                    min1 = mins[minute] - 2 * indx;
+
+                }
+
+                if (minute >= 46 && minute <= 59)//cadr IV 
+                {
+
+                    indx = 60 - minute;
+                    min1 = mins[minute] - 2 * indx;
+                }
+            }
+
+            Console.WriteLine(ora1);
+            Console.WriteLine(min1);
+
+            //convertire in string 
+
+            string rezora = "", rezmin = "";
+            if (ora1 < 10) rezora = "0" + ora1.ToString() + ":";
+            else rezora = ora1.ToString() + ":";
+
+            if (min1 < 10) rezmin = "0" + min1.ToString();
+            else rezmin = min1.ToString();
+            string rez = rezora + rezmin;
+
+            return rez;
+        }
