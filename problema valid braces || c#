@@ -1,0 +1,19 @@
+
+  public static bool validBraces(string braces)
+        {
+            string model = "(){}[]";
+
+            Dictionary<char, int> tabelEvid = new Dictionary<char, int>();
+            foreach (char elem in model) tabelEvid[elem] = 0; //creare tabel 
+            foreach (char elem in braces) { tabelEvid[elem]++; }//incrementare fiecare valoare cu nr de aparitii
+
+            bool ok = true;
+
+            if (tabelEvid['('] != tabelEvid[')']) ok = false;
+
+            if (tabelEvid['['] != tabelEvid[']']) ok = false;
+
+            if (tabelEvid['{'] != tabelEvid['}']) ok = false;
+
+            return ok;
+        }
