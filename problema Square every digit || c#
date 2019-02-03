@@ -1,0 +1,19 @@
+
+  public static int SquareDigits(int n)
+        {
+
+           string suma = "";
+            while (n != 0)
+            {
+                double u = n % 10;
+
+                suma += Convert.ToString(Math.Pow(u, u));
+                n /= 10;
+                Console.WriteLine(n);
+
+            }
+            int suma2 = 1;
+
+
+            return suma2;
+        }
