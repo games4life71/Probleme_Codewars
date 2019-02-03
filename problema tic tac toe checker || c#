@@ -1,0 +1,98 @@
+ public static int IsSolved(int[,] tablaDeJoc)
+        {
+
+
+            int countX = 0, countY = 0;
+            int castigator = 0; //1-X 2-Y ;
+
+            //verificam daca exista un castigator -verificam toate directiile 
+            //jocul se poate termina chiar daca mai exista locuri libere pe tabla 
+
+            //verticala  de la stanga la dreapta
+            for (int i = 0; i < tablaDeJoc.GetLength(0); i++)
+            {
+                countX = 0;
+                countY = 0;
+                for (int j = 0; j < tablaDeJoc.GetLength(1); j++)
+                {
+
+
+                    if (tablaDeJoc[j, i] == 1) countX++;
+                    if (tablaDeJoc[j, i] == 2) countY++;
+
+                }
+
+                if (countX == 3) { castigator = 1; return 1; }
+                if (countY == 3) { castigator = 2; return 2; }
+
+            }
+            //pe orizontala 
+
+            for (int i = 0; i < tablaDeJoc.GetLength(0); i++)
+            {
+                countX = 0;
+                countY = 0;
+                for (int j = 0; j < tablaDeJoc.GetLength(1); j++)
+                {
+
+
+                    if (tablaDeJoc[i, j] == 1) countX++;
+                    if (tablaDeJoc[i, j] == 2) countY++;
+
+                }
+
+                if (countX == 3) { castigator = 1; return 1; }
+                if (countY == 3) { castigator = 2; return 2; }
+
+            }
+            //pe diagonala  1 
+
+
+            countX = 0;
+            countY = 0;
+            for (int j = 0, i = 0; j < tablaDeJoc.GetLength(1); j++, i++)
+            {
+
+
+                if (tablaDeJoc[i, j] == 1) countX++;
+                if (tablaDeJoc[i, j] == 2) countY++;
+
+            }
+
+
+            if (countX == 3) { castigator = 1; return 1; }
+            if (countY == 3) { castigator = 2; return 2; }
+
+            //diagonala 2 
+            countX = 0;
+            countY = 0;
+            for (int j = 2, i = 2; j > -1; j--, i--)
+            {
+
+
+
+                if (tablaDeJoc[j, i] == 1) countX++;
+                if (tablaDeJoc[j, i] == 2) countY++;
+
+            }
+
+            if (countX == 3) { castigator = 1; return 1; }
+            if (countY == 3) { castigator = 2; return 2; }
+
+            bool ok = true; ; //daca nu exista nioi un castigator verificam daca exista locuri libere pe tabla 
+            if (castigator == 0)
+            {
+                for (int i = 0; i < tablaDeJoc.GetLength(0); i++) //verificam daca exista locuri libere 
+                {
+                    for (int j = 0; j < tablaDeJoc.GetLength(1); j++)
+                    {
+                        if (tablaDeJoc[i, j] == 0) { ok = true; return -1; }
+                        else ok = false;//nu s a gasit nici un loc liber - este remiza  ! 
+                    }
+
+                }
+                if (ok == false) return 0;
+            }
+
+            return 2222;
+        }
