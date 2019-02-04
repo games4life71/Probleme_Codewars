@@ -1,0 +1,9 @@
+
+public static string SongDecoder(string input)
+        {
+            string[] stringSeparators = new string[] { "WUB" };
+           
+           string[] rez  =input.Split(new string[] { "WUB" }, StringSplitOptions.RemoveEmptyEntries);
+            return string.Join(" ", rez).Trim(' ');
+              
+        }
