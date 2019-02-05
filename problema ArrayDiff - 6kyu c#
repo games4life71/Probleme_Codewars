@@ -1,0 +1,9 @@
+
+   public static int[] ArrayDiff (int[] a , int[] b)
+        {
+            foreach(int nr in b)
+            {
+                a = a.Where(val => val != nr).ToArray();
+            }        
+            return a;
+        }
