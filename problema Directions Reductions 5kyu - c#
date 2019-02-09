@@ -1,0 +1,87 @@
+     public static string[] dirRed(string[] str)
+        {
+            List<int> directii = new List<int>();
+
+          //cautare perechi care se reduc si stergere din array 
+          //NORD  = 1 SUD = -1  EST =2 VEST =-2 
+
+            foreach (string directie in str)
+            {
+                switch(directie)
+                {
+                    case "NORTH" :
+                        directii.Add(1);
+                            break;
+                    case "SOUTH":
+                        directii.Add(-1);
+                        break;
+                    case "WEST":
+                        directii.Add(-2);
+                        break;
+                    case "EAST":
+                        directii.Add(2);
+                        break;
+                }
+            }
+            bool sortare = false;
+           
+           // foreach (int nr in directii) Console.WriteLine(nr);
+            Console.WriteLine();
+            while (sortare == false)
+            {
+                int nrSch = 0;
+                for (int i = 0; i <= directii.Count; i++)
+                {
+                    if (i < directii.Count - 1)
+                    {
+
+                        if (directii[i] + directii[i + 1] == 0)
+                        {
+                            directii.RemoveAt(i+1);
+                            directii.RemoveAt(i);
+                            sortare = false;
+                            nrSch++;
+                           
+                        }
+
+                    }
+                   
+                }
+              
+                if (nrSch == 0) sortare = true;
+            }
+
+            //   foreach (int nr in directii) Console.WriteLine(nr);
+
+            //comnvertire to string 
+            List<String> rez = new List<string>();
+            foreach(int nr in directii)
+            {
+              
+                switch(nr)
+                {
+
+                    case 1:
+
+                        rez.Add("NORTH ");
+                        break;
+
+                    case -1:
+                        rez.Add ("SOUTH ");
+                        break;
+                         
+                    case 2:
+                        rez.Add ("EAST");
+                        break;
+
+                    case -2:
+                        rez.Add( "WEST");
+                        break;
+
+                        
+                }
+
+
+            }
+            return rez.ToArray();
+        }
