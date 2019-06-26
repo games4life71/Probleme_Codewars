@@ -1,0 +1,72 @@
+public class Kata
+{
+       static void swap(char[] ar, int i, int j)
+        {
+            char temp = ar[i];
+            ar[i] = ar[j];
+            ar[j] = temp;
+        }
+
+        public static long NextBiggerNumber(long numar)
+        {
+
+            StringBuilder nr1 = new StringBuilder();
+Console.WriteLine("numarul este "+numar );
+
+            //convert int to string 
+
+            string nr = numar.ToString();
+
+            char[] cifre = nr.ToCharArray(); //cifrele sunt puse intr un vector 
+
+            // se cauta de la capat la inceput 
+
+            int i;
+            for (i = cifre.Length - 1; i > 0; i--)
+            {
+
+                if (cifre[i - 1] < cifre[i]) break; //s-a gasit cifra care este mai mica decat antecedenta la pozitia i 
+
+            }
+
+
+
+            if (i == 0) return -1;
+            //se cauta in jumatatea din dreapta urmatoarea cifra mai mare dcat cea gasita 
+
+            else
+            {
+
+
+
+                char min = '9';
+                int poz_schim = 0;
+
+                for (int j = i; j < cifre.Length; j++)
+                {
+                    if (cifre[j] > cifre[i - 1] && cifre[j] <= min) { min = cifre[j]; poz_schim = j; }
+
+
+                }
+
+                //se face schimbul intre cele 2 valori CORECT 
+              
+                swap(cifre,i-1,poz_schim);  //se face schimbul intre cele 2 valori CORECT 
+                for (int p = 0; p < cifre.Length; p++) Console.WriteLine(cifre[p]);
+                Console.WriteLine();
+
+
+                Array.Sort(cifre, i , cifre.Length - i);
+
+
+                for (int k = 0; k < cifre.Length; k++) nr1.Append(cifre[k], 1);
+            }
+
+
+            long numarfin = long.Parse(nr1.ToString());
+
+            return numarfin;
+
+
+            
+        }
