@@ -1,0 +1,43 @@
+      public static char FindMissingLetter (char[] litere) //WORKING 
+        {//{ b,c,d,e,g} 
+           
+            string alfabet1 = "abcdefghijklmnopqrstuvwxyz";
+            string alfabet = "";
+            if (char.IsUpper(litere[1]) == true)
+            {
+
+
+                alfabet = alfabet1.ToUpper();
+            }
+            else alfabet = alfabet1;
+            int val1 = alfabet.IndexOf(litere[0]);
+            int val2 = alfabet.IndexOf(litere[litere.Length-1]);
+      
+            SortedDictionary<char, int> tabel = new SortedDictionary<char, int>(); // inutil se putea folosi si lista sau array 
+            //se creaza un tabel cu litere de la val1 la val2 
+            for(int i = val1; i <= val2; i++)
+            {
+
+                tabel.Add(alfabet[i],0);
+
+            }
+            foreach (KeyValuePair<char,int> kv in tabel) //se verifica ce litera lipseste 
+            {
+
+                bool ok = false;
+                for (int i = 0; i < litere.Length; i++)
+                {
+                    if (kv.Key == litere[i]) {ok = true; }
+                }
+
+
+                if (ok == false) return kv.Key;
+
+
+            }
+
+            return 'a';
+
+            
+
+        }
