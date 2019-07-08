@@ -1,0 +1,29 @@
+        public static string AlphabetPosition(string text)
+        {
+            string litere ="abcdefghijklmnopqrstuvwxyz";
+            string text1 = text.Replace(" ", string.Empty).Replace(".", string.Empty).Replace(text[0], char.ToLower(text[0]));
+            Console.WriteLine( "porpo este " + text1 );
+            SortedDictionary<char, int> tabel = new SortedDictionary<char, int>();
+            int i = 1;
+            foreach(char c in litere)
+            {
+                tabel.Add(c, i);
+                i++;
+            }
+
+            foreach (KeyValuePair<char, int> kv in tabel) Console.WriteLine( kv.Key  +" " + kv.Value);
+            //se fac toate litere mici 
+           // foreach(char c in text1) {  if(litere.Contains(c)) char.ToLower(c)  }
+            StringBuilder sb = new StringBuilder();
+            foreach (char c in text1)
+            {
+      
+                if (litere.Contains(c) || litere.Contains(char.ToLower(c)))
+                { sb.Append(tabel[char.ToLower(c)] + " "); }
+               
+                else continue; 
+
+            }
+
+           return sb.ToString().TrimEnd();
+        }
