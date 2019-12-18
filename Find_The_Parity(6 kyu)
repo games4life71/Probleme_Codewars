@@ -1,0 +1,11 @@
+   public static int Find(int[] numbers )
+        {
+
+            //finds the only one even/odd number 
+         int parity = numbers[0] % 2 + numbers[1] % 2 + numbers[2] % 2;
+            int rem = parity > 1 ? 0 : 1; 
+             
+            for (int i = 0; i < numbers.Length; i++)
+                if (numbers[i] == rem)  return numbers[i]; 
+           return -1; 
+        }
