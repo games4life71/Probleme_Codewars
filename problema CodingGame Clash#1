@@ -1,0 +1,23 @@
+   public static string Bancnote ( int valoare_initiala)
+        {
+
+            StringBuilder mesajFin = new StringBuilder();
+            float valoare_init = int.Parse(Console.ReadLine());
+            float[] bancnote = { 500, 200, 100, 50, 10, 5, 2, 1, 0.5f };
+            int i = 0;
+            while (valoare_init != 0)
+            {
+                int count = 0;
+                float suma_scazuta = 0;
+                while (bancnote[i] <= valoare_init) { valoare_init -= bancnote[i]; count++; Console.WriteLine(valoare_init); }
+
+                mesajFin.Append(count.ToString() + "X" + bancnote[i] + " ");
+                Console.WriteLine(i + "i");
+                i++;
+
+            }
+
+            string mesaj = mesajFin.ToString();
+
+            return mesaj; 
+        }
