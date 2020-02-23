@@ -1,0 +1,26 @@
+   public static bool IsNarcisist ( int value)
+            {
+                    double sum = 0;
+                    int n1 = value;
+
+                    if (value < 10) return true;
+            
+                else
+                {
+                    int n = value;
+                    int pow = 0; 
+                    while(value!=0)
+                    {
+                        pow++;
+                        value /= 10;
+                    }            
+                    while(n!=0)
+                    {
+                        sum += Math.Pow(  Convert.ToDouble(n%10) , Convert.ToDouble(pow));
+                        n /= 10;
+                    }
+
+
+                }
+                return sum == n1 ? true : false; 
+        }
