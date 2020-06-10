@@ -1,0 +1,25 @@
+   public static string[] Splitstring(string str)
+        {
+
+            string[] res = new string[str.Length / 2  +1];
+            int index_arr = 0, index_str = 0 , ind = 0 ; 
+
+            while (index_str <str.Length  && ind <str.Length / 2 )
+            {
+
+
+                res[index_arr] = str.Substring(index_str, 2);
+                index_arr++;
+                index_str += 2;
+                ind++;
+
+            }
+
+            if (str.Length % 2 != 0)         
+                res[index_arr] = string.Concat(str[str.Length - 1], '_');
+
+            return res = res.Where(c => c != null).ToArray();
+            
+        }
+        
+        //when the number is odd -> MAKE IT EVEN !!!!! 
