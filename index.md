@@ -23,10 +23,9 @@ Syntax highlighted code block
 
 **Bold** and _Italic_ and `Code` text
 
-Cea mai grea problema pe care am facut-o este acceasta 
+Cea mai grea problema pe care am facut-o este acceasta [Click](https://github.com/games4life71/Probleme_Codewars/blob/master/problema%20Clock%20in%20mirror%20%7C%7C%20c%23)
 
 
-[https://github.com/games4life71/Probleme_Codewars/blob/master/problema%20Clock%20in%20mirror%20%7C%7C%20c%23]
 ```
 
 
